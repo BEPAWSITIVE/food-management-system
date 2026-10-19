@@ -1,0 +1,11 @@
+<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Steam lines -->
+  <path d="M13 5C13 5 11 8 13 10C15 12 13 14 13 14" stroke="#F5A623" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M20 3C20 3 18 7 20 9C22 11 20 14 20 14" stroke="#F5A623" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M27 5C27 5 25 8 27 10C29 12 27 14 27 14" stroke="#F5A623" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Bowl Base (Navy) -->
+  <path d="M5 18C5 26.837 11.716 34 20 34C28.284 34 35 26.837 35 18H5Z" fill="#0C2529"/>
+  <!-- Rim / Soup (Golden Yellow) -->
+  <ellipse cx="20" cy="18" rx="15" ry="4" fill="#F5A623"/>
+  <ellipse cx="20" cy="18" rx="12.5" ry="2.8" fill="#F7C04A"/>
+</svg>

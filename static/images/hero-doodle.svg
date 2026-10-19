@@ -1,0 +1,20 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Subtle organic background warm accent blob -->
+  <path d="M20 50C15 25 35 10 65 15C95 20 115 45 110 75C105 105 75 115 45 105C15 95 25 75 20 50Z" fill="#FFF4D9" fill-opacity="0.8"/>
+  
+  <!-- Sparkle / Rays -->
+  <path d="M38 32L30 26" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M48 20L44 10" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M96 36L106 32" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M94 54L104 56" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Fork -->
+  <path d="M50 34V46C50 51 54 55 59 55C64 55 68 51 68 46V34" stroke="#16292B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M56 34V46" stroke="#16292B" stroke-width="3" stroke-linecap="round"/>
+  <path d="M62 34V46" stroke="#16292B" stroke-width="3" stroke-linecap="round"/>
+  <path d="M59 55V88" stroke="#16292B" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Spoon -->
+  <ellipse cx="80" cy="42" rx="9" ry="12" stroke="#16292B" stroke-width="3"/>
+  <path d="M80 54V88" stroke="#16292B" stroke-width="3.5" stroke-linecap="round"/>
+</svg>
