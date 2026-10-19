@@ -16,6 +16,19 @@ from app.auth import hash_password, verify_password
 app = FastAPI(title="Food Manager", description="Corporate Food & Meal Attendance Management System")
 handler = app  # Expose for Vercel Serverless
 
+@app.middleware("http")
+async def fix_vercel_path_middleware(request: Request, call_next):
+    # Normalize Vercel URL rewrite prefixes so FastAPI routes match cleanly
+    path = request.scope.get("path", "")
+    for prefix in ["/app/main.py", "/app/main", "/api/index.py", "/api/index"]:
+        if path == prefix:
+            request.scope["path"] = "/"
+            break
+        elif path.startswith(prefix + "/"):
+            request.scope["path"] = path[len(prefix):]
+            break
+    return await call_next(request)
+
 # Ensure DB is initialized
 init_db()
 
@@ -115,6 +128,9 @@ def get_current_user_from_req(request: Request):
 # ==================== HTML PAGE ROUTE ====================
 
 @app.get("/", response_class=HTMLResponse)
+@app.get("/index.html", response_class=HTMLResponse)
+@app.get("/app/main.py", response_class=HTMLResponse)
+@app.get("/app/main", response_class=HTMLResponse)
 async def serve_index():
     index_file = os.path.join(TEMPLATES_DIR, "index.html")
     if os.path.exists(index_file):
