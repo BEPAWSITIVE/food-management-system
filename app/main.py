@@ -13,10 +13,24 @@ from app.database import get_db, init_db
 from app.auth import hash_password, verify_password
 
 # Initialize FastAPI app
-app = FastAPI(title="Foods Manager", description="Corporate Food & Meal Attendance Management System")
+app = FastAPI(title="Food Manager", description="Corporate Food & Meal Attendance Management System")
+handler = app  # Expose for Vercel Serverless
 
 # Ensure DB is initialized
 init_db()
+
+# Auto-seed initial data if empty (crucial for Vercel /tmp environment)
+try:
+    from app.seed import seed_data
+    conn = get_db()
+    c = conn.cursor()
+    c.execute("SELECT COUNT(*) FROM users")
+    count = c.fetchone()[0]
+    conn.close()
+    if count == 0:
+        seed_data()
+except Exception as e:
+    print("Auto-seed notice:", e)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_DIR = os.path.join(BASE_DIR, "static")

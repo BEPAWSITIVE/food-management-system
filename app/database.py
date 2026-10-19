@@ -1,9 +1,27 @@
 import sqlite3
 import os
 import json
+import tempfile
 from datetime import datetime, date
 
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "foods_manager.db")
+def get_db_path():
+    # If running on Vercel, AWS Lambda, or any environment where VERCEL env is set
+    if os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
+        return os.path.join(tempfile.gettempdir(), "foods_manager.db")
+    
+    # Check if local directory is writable
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        test_file = os.path.join(base_dir, ".test_write")
+        with open(test_file, "w") as f:
+            f.write("ok")
+        os.remove(test_file)
+        return os.path.join(base_dir, "foods_manager.db")
+    except Exception:
+        # Read-only filesystem fallback to /tmp
+        return os.path.join(tempfile.gettempdir(), "foods_manager.db")
+
+DB_PATH = get_db_path()
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
